@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="turns.list">
+			<field name="name">Turnos</field>
+			<field name="model">turns.turn</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="court"/>
+					<field name="duration"/>
+					<field name="cash_advance"/>
+					<field name="recurrent"/>
+					<field name="client"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="turns.form" model="ir.ui.view">
+            <field name="name">turns.turn.form</field>
+            <field name="model">turns.turn</field>
+            <field name="arch" type="xml">
+                <form string="Turnos">
+	                <header>
+	<!--                 	<button name="set_carga" type="object" string="A Carga" states="validado" class="oe_highlight" groups="base.group_user"/> -->
+	<!--                     <button name="set_validado" type="object" string="Validar"  states="carga,operadora" class="oe_highlight" groups="base.group_user"/> -->
+	<!--                     <button name="set_operadora" type="object" string="A Operadora"  states="validado,aprobado" class="oe_highlight" groups="base.group_user"/> -->
+	<!--                     <button name="set_aprobado" type="object" string="Aprobar"  states="operadora" class="oe_highlight" groups="base.group_user"/> -->
+	                	
+	<!--                     <field name="state" widget="statusbar" readOnly="True"/> -->
+	                </header>
+                	<sheet string="Turno">
+                    	<group>
+							<field name="court"/>
+							<field name="duration"/>
+							<field name="cash_advance"/>
+							<field name="recurrent"/>
+							<field name="client"/>
+                    	</group>
+                    </sheet>
+				</form>
+			</field>
+		</record>
+		
+	</data>
+</openerp>
