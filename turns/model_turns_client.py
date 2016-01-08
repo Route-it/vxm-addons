@@ -28,3 +28,17 @@ class turns_client(models.Model):
     
     _sql_constraints = [('turns_client_dni_unique', 'unique(dni)', 'Ya existe un socio con este dni'),
                         ('turns_client_mail_unique','unique(mail)',"Este mail ya fue registrado")]
+    
+    def name_get(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        if isinstance(ids, (int, long)):
+            ids = [ids]
+    
+        res = []
+        for record in self.browse(cr, uid, ids, context=context):
+            name = record.client_name + ' ' + record.client_lastname
+            res.append((record.id, name))
+        
+        return res
+    

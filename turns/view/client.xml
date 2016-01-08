@@ -3,7 +3,7 @@
 <openerp>
 	<data>
 		<record model="ir.ui.view" id="turns.client_list">
-			<field name="name">Clientes</field>
+			<field name="name">turns.client.list</field>
 			<field name="model">turns.client</field>
 			<field name="arch" type="xml">
 				<tree>
@@ -17,7 +17,7 @@
 			</field>
 		</record>
 		
-		<record id="turns.form" model="ir.ui.view">
+		<record id="turns.client_form" model="ir.ui.view">
             <field name="name">turns.client.form</field>
             <field name="model">turns.client</field>
             <field name="arch" type="xml">
