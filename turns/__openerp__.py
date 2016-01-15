@@ -28,7 +28,8 @@
         'templates.xml',
         'view/turns.xml',
         'view/client.xml',
-        'view/menu.xml'
+        'view/menu.xml',
+        'workflows/turn.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

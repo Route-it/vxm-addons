@@ -17,7 +17,7 @@ _logger = logging.getLogger(__name__)
 class turns_turn(models.Model):
     _name = 'turns.turn'
     
-    court = fields.Char("Cancha",required="True",help="La chancha que se vaya a ocupar en este turno")
+    court = fields.Many2one("turns.court","Cancha",required="True",help="La chancha que se vaya a ocupar en este turno")
     fechayhora = fields.Datetime("Fecha y hora",required=True,help="Fecha y hora en la que se reserva el turno")
     duration = fields.Integer("Duración de turno",required="True",default=1,help="Duración del turno en la cancha")
     cash_advance = fields.Float("Seña",required="True",default=0,help="Seña para reserva de cancha")
@@ -26,7 +26,7 @@ class turns_turn(models.Model):
     state = fields.Selection([("reserva","Reserva de turnos"),
                             ("canchatomada","Cancha Tomada"),
                             ("turnocerrado","Turno Cerrado"),
-                            ],readonly=True,string="Estado")
+                            ],string="Estado")
     
     def name_get(self, cr, uid, ids, context=None):
         if context is None:
@@ -41,4 +41,5 @@ class turns_turn(models.Model):
         
         return res
     
-    
+    def take_court(self):
+        self.state = "canchatomada"

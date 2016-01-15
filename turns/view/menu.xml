@@ -15,6 +15,12 @@
     	<field name="view_mode">tree,form</field>
     	<field name="search_view_id" ref="turns.client_list"/>
     </record>
+    
+    <record model="ir.actions.act_window" id="turns.court_action_window">
+    	<field name="name">Canchas</field>
+    	<field name="res_model">turns.court</field>
+    	<field name="view_mode">tree,form</field>
+    </record>
 	
 	
   	<!-- Top menu item -->
@@ -32,6 +38,12 @@
 	
 	<menuitem name="Socios" id="turns.client_left_menu_list" parent="turns.turn_left_menu_category"
     		 action="turns.client_action_window" />
+    		 
+   	<menuitem name="Configuración" id="turns.turn_left_menu_configuration_category" parent="base.menu_main_cert"/>
+   	
+   	<menuitem name="Canchas" id="turns.turn_configuration_left_menu_list" parent="turns.turn_left_menu_configuration_category"
+    		 action="turns.court_action_window" />
+	
   	
     <!-- actions opening views on models -->
     
