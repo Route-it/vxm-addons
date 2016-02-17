@@ -13,6 +13,7 @@
 					<field name="client_lastname"/>
 					<field name="phone"/>
 					<field name="score"/>
+					<field name="total_ammount"/>
 				</tree>
 			</field>
 		</record>
@@ -42,6 +43,16 @@
 							<field name="mail" widget="email"/>
 							<field name="phone"/>
 							<field name="score"/>
+							<field name="total_ammount"/>
+                    	</group>
+                    	<group>
+                    		<field name="account_entry_ids" readonly='True'>
+                    			<tree default_order='create_date desc'>
+                    				<field name="date"/>
+                    				<field name="ammount"/>
+                    				<field name="concept"/>
+                    			</tree>
+                    		</field>
                     	</group>
                     </sheet>
 				</form>

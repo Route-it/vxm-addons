@@ -6,13 +6,13 @@
       <field name="name">Turnos</field>
       <field name="res_model">turns.turn</field>
       <field name="view_type">form</field>
-      <field name="view_mode">calendar,tree,form,graph,pivot</field>
+      <field name="view_mode">calendar,tree,form,pivot</field>
     </record>
     
     <record model="ir.actions.act_window" id="turns.client_action_window">
     	<field name="name">Socios</field>
     	<field name="res_model">turns.client</field>
-    	<field name="view_mode">tree,form</field>
+    	<field name="view_mode">tree,form,pivot</field>
     	<field name="search_view_id" ref="turns.client_list"/>
     </record>
     

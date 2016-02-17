@@ -11,7 +11,7 @@
 			<field name="flow_start">True</field>
 			<field name="name">reserva</field>
 			<field name="kind">function</field>
-			<field name="action">write({'state':'reserva'})</field>
+			<field name="action">make_reservation()</field>
 		</record>
 		<record id="turn_court_taken" model="workflow.activity">
 			<field name="wkf_id" ref="turn_workflow"></field>
@@ -22,7 +22,8 @@
 		<record id="turn_finished" model="workflow.activity">
 			<field name="wkf_id" ref="turn_workflow"></field>
 			<field name="name">turno terminado</field>
-			<field name="kind">dummy</field>
+			<field name="kind">function</field>
+			<field name="action">close_turn()</field>
 			<field name="flow_stop">True</field>
 		</record>
 		
@@ -33,25 +34,11 @@
             <field name="signal">tomar_cancha</field>
         </record>
         
-<!--         volver al estado de carga -->
-<!--         <record id="geo_certifications.certification_carga_validado" model="workflow.transition"> -->
-<!--             <field name="act_from" ref="geo_certifications.certification_validated"/> -->
-<!--             <field name="act_to" ref="geo_certifications.certification_dataloading"/> -->
-<!--             <field name="signal">set_carga</field> -->
-<!--         </record> -->
-  
-<!--   		Pasar a estado de operadora -->
-<!--         <record id="geo_certifications.certification_validado_operadora" model="workflow.transition"> -->
-<!--             <field name="act_from" ref="geo_certifications.certification_validated"/> -->
-<!--             <field name="act_to" ref="geo_certifications.certification_onOperator"/> -->
-<!--  		    <field name="signal">set_operadora</field> -->
-<!--         </record> -->
-        
-        
-<!--         <record id="geo_certifications.certification_validado_operadora" model="workflow.transition"> -->
-<!--             <field name="act_from" ref="geo_certifications.certification_onOperator"/> -->
-<!--             <field name="act_to" ref="geo_certifications.certification_aproved"/> -->
-<!--  		    <field name="signal">set_aprobado</field> -->
-<!--         </record>  -->
+<!-- 		pasar a turno cerrado  -->
+        <record id="turns_turno_cerrado_transition" model="workflow.transition">
+            <field name="act_from" ref="turn_court_taken"/>
+            <field name="act_to" ref="turn_finished"/>
+            <field name="signal">cerrar_turno</field>
+        </record>
 	</data>
 </openerp>

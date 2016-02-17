@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="turns.court_list">
+			<field name="name">turns.court.list</field>
+			<field name="model">turns.court</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="court_name"/>
+					<field name="court_unity_price"/>
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>
