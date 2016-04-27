@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="turns.turn_list">
+			<field name="name">turns.turn.list</field>
+			<field name="model">turns.turn</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="court"/>
+					<field name="fechayhora"/>
+					<field name="duration"/>
+					<field name="cash_advance"/>
+<!-- 					<field name="recurrency"/> -->
+					<field name="client"/>
+					<field name="cancelation"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="turns.turn_form" model="ir.ui.view">
+            <field name="name">turns.turn.form</field>
+            <field name="model">turns.turn</field>
+            <field name="arch" type="xml">
+                <form string="Turnos">
+	                <header>
+	                	<button string="Tomar cancha" name="tomar_cancha" states="reserva" type="workflow" class="oe_highlight"/>
+	                	<button string="Cerrar turno" name="cerrar_turno" states="canchatomada" type="workflow" class="oe_highlight"/>
+	           			<field name="state" widget="statusbar" readOnly="True"/>
+	                </header>
+                	<sheet string="Turno">
+                    	<group>
+							<field name="court"/>
+							<field name="fechayhora"/>
+							<field name="duration"/>
+							<field name="cash_advance"/>
+							<field name="client"/>
+							<field name="total_cost"/>
+							<field name="cancelation" attrs="{'readonly':[('state','!=','canchatomada')],'required':[('state','=','canchatomada')]}"/>
+                    	</group>
+                    </sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="turns.turn_calendar" model="ir.ui.view">
+			<field name="name">turns.turn.calendar</field>
+			<field name="model">turns.turn</field>
+			<field name="arch" type="xml">
+				<calendar date_start="fechayhora" date_delay="duration" color="court" quick_add="false">
+					<field name="court"/>
+					<field name="client"/>
+				</calendar>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

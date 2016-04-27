@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "c:/vxm-addons/turns",
+    'name': "Gestión de turnos",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Gestión de turnos para canchas de fútbol
+        """,
 
     'description': """
-        Long description of module's purpose
+        Con este módulo se pueden gestionar los turnos de canchas de fútblo, socios para alquiler, historial de pagos, cuentas corrientes y scoring de clientes
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Route IT",
+    'website': "http://www.routeit.com.ar",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
@@ -20,13 +20,17 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['calendar'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views.xml',
         'templates.xml',
+        'view/turns.xml',
+        'view/client.xml',
+        'view/menu.xml',
+        'view/court.xml',
+        'workflows/turn.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

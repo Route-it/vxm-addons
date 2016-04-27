@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="turn_workflow" model="workflow">
+			<field name="name">turn_workflow</field>
+			<field name="osv">turns.turn</field>
+			<field name="on_create">True</field>
+		</record>
+		<record id="turn_reservation" model="workflow.activity">
+			<field name="wkf_id" ref="turn_workflow"></field>
+			<field name="flow_start">True</field>
+			<field name="name">reserva</field>
+			<field name="kind">function</field>
+			<field name="action">make_reservation()</field>
+		</record>
+		<record id="turn_court_taken" model="workflow.activity">
+			<field name="wkf_id" ref="turn_workflow"></field>
+			<field name="name">Cancha tomada</field>
+			<field name="kind">function</field>
+			<field name="action">take_court()</field>
+		</record>
+		<record id="turn_finished" model="workflow.activity">
+			<field name="wkf_id" ref="turn_workflow"></field>
+			<field name="name">turno terminado</field>
+			<field name="kind">function</field>
+			<field name="action">close_turn()</field>
+			<field name="flow_stop">True</field>
+		</record>
+		
+<!-- 		pasar a estado de cancha tomada  -->
+		<record id="turns_cancha_tomada_transition" model="workflow.transition">
+            <field name="act_from" ref="turn_reservation"/>
+            <field name="act_to" ref="turn_court_taken"/>
+            <field name="signal">tomar_cancha</field>
+        </record>
+        
+<!-- 		pasar a turno cerrado  -->
+        <record id="turns_turno_cerrado_transition" model="workflow.transition">
+            <field name="act_from" ref="turn_court_taken"/>
+            <field name="act_to" ref="turn_finished"/>
+            <field name="signal">cerrar_turno</field>
+        </record>
+	</data>
+</openerp>
