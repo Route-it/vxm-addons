@@ -18,6 +18,7 @@ _logger = logging.getLogger(__name__)
 class turns_client(models.Model):
     _name = "turns.client"
     
+    
     dni = fields.Char("DNI",required="True",help="Identificador único de cliente")
     mail = fields.Char("E-mail",required="True",help="Mail del socio")
     client_name = fields.Char("Nombre", required="True",help="Nombre del cliente")
@@ -25,7 +26,8 @@ class turns_client(models.Model):
     phone = fields.Char("Teléfono",required="True",help="tel�fono del cliente")
     score = fields.Integer("Puntaje",help="Es el puntaje que se calucla en función de cómo realiza los pagos y respeta las instalaciones")
     account_entry_ids = fields.One2many("turns.accounting.entry","client_id","Movimientos",help="Movimientos en cuenta corriente")
-    total_ammount = fields.Float('Estado de cuenta',compute = 'calculate_total',store = True, help = "Estado de la cuenta corriente del socio")
+    currency_id = fields.Many2one('res.currency', string='Account Currency', help="Forces all moves for this account to have this account currency.")
+    total_ammount = fields.Monetary('Estado de cuenta',compute = 'calculate_total',store = True, help = "Estado de la cuenta corriente del socio")
     
     _sql_constraints = [('turns_client_dni_unique', 'unique(dni)', 'Ya existe un socio con este dni'),
                         ('turns_client_mail_unique','unique(mail)',"Este mail ya fue registrado")]

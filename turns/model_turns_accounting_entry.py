@@ -16,7 +16,9 @@ _logger = logging.getLogger(__name__)
 class turn_accounting_entry(models.Model):
     
     _name = 'turns.accounting.entry'
-    ammount = fields.Float('Cantidad',required = True, help = "Cantidad de dinero de débito o crédito")
+    currency_id = fields.Many2one('res.currency', string='Account Currency',
+        help="Forces all moves for this account to have this account currency.")
+    ammount = fields.Monetary('Cantidad',required = True, help = "Cantidad de dinero de débito o crédito")
     date = fields.Datetime('fecha y hora', help = 'timestamp de entrada')
     client_id = fields.Many2one('turns.client','Cliente',required = True)
     concept = fields.Selection([("seña","seña"),("cancelación","cancelación"),("deuda","deuda"),("pago","pago")],"Concepto",
